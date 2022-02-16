@@ -1,0 +1,34 @@
+Parameters: 
+  myKeyPair: 
+    Description: Amazon EC2 Key Pair
+    Type: "AWS::EC2::KeyPair::KeyName"
+
+Resources : 
+    EC2Instance : 
+      Type : AWS::EC2::Instance
+      Properties : 
+        KeyName: !Ref myKeyPair
+        ImageId: ami-04505e74c0741db8d
+        InstanceType: t2.micro
+        Tags:
+        - Key: Schedule
+          Value: Bangalore-office-hours
+        UserData:
+          Fn::Base64: 
+            !Sub |
+              #!/bin/bash
+              sudo apt update
+              sudo apt install python3-pip -y
+              sudo python3 -m pip install --upgrade pip
+              sudo apt install python3-virtualenv -y
+              sudo python3 -m virtualenv /home/ubuntu/apc-ve
+              source /home/ubuntu/apc-ve/bin/activate
+              sudo python3 -m pip install --upgrade "aws-parallelcluster" 
+              sudo apt update
+              sudo apt install nodejs -y
+              sudo apt install npm -y
+              sudo curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+              sudo apt install unzip
+              sudo unzip awscliv2.zip
+              sudo ./aws/install
+              ./aws/install -i /usr/local/aws-cli -b /usr/local/bin
