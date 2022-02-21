@@ -1,5 +1,5 @@
-#!/bin/sh
-set -x
+#!/bin/bash
+
 
 echo "creating cluster-config.yaml file"
 source ./apc-ve/bin/activate
