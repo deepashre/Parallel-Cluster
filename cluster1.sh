@@ -18,7 +18,7 @@ echo "Json file is converted to yaml"
 sed -i '1 i\Tags:' b.yaml
 yq eval-all "select(fileIndex == 1) *+ select(fileIndex == 0)" b.yaml cluster-config.yaml >> cluster-config1.yaml
 echo "b.yaml file and cluster-config.yaml file is merged into cluster-config1.yaml"
-echo "Modified cluster-config.yaml with Tags"
+echo "Modified cluster-config1.yaml with Tags"
 source ./apc-ve/bin/activate
 echo "Virtual Environmement Activated"
 echo "creating Cluster with updated cluster-config1.yaml"
