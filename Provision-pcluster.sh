@@ -1,6 +1,7 @@
 #!/bin/bash
 
-
+TOKEN=$(curl -s -X PUT "http://169.254.169.254/latest/api/token" -H "X-aws-ec2-metadata-token-ttl-seconds: 21600")
+export AWS_DEFAULT_REGION=$(curl -s -H "X-aws-ec2-metadata-token: $TOKEN" -v http://169.254.169.254/latest/dynamic/instance-identity/document | grep region | cut -d \" -f4)
 echo "creating cluster-config.yaml file"
 source ./apc-ve/bin/activate
 echo "Activated Virtual Environment"
