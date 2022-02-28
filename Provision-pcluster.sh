@@ -24,5 +24,5 @@ echo "Modified cluster-config1.yaml with Tags"
 source ./apc-ve/bin/activate
 echo "Virtual Environmement Activated"
 echo "creating Cluster with updated cluster-config1.yaml"
-pcluster create-cluster --cluster-name test-cluster --cluster-configuration cluster-config1.yaml
+pcluster create-cluster --cluster-name test-cluster${RANDOM:0:1} --cluster-configuration cluster-config1.yaml
 echo "Success"
