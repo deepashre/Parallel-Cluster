@@ -5,4 +5,4 @@ sleep 30
 echo "Hello World from $(hostname)"
 EOF
 sudo chmod +x demo-sample.sh
-sbatch sample2.sh
+sbatch demo-sample.sh
